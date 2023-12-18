@@ -34,4 +34,8 @@ const myFunction = function(){
 
 console.log(typeof anotherId);
 
+// Stack & Heap:
+// Stack uses the primitive datatypes,while heap uses a Non-primitive datatypes. 
+// stack gives the copy of object, while heap give the refrence of object. 
+
 // https://262.ecma-international.org/5.1/#sec-11.4.3
