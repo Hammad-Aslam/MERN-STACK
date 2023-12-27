@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GitHub Profile Card</title>
+    <style>
+        #profile-card {
+            max-width: 300px;
+            margin: 20px;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            text-align: center;
+        }
+
+        #profile-image {
+            max-width: 100%;
+            border-radius: 50%;
+        }
+    </style>
+</head>
+<body>
+
+<div id="profile-card">
+    <img id="profile-image" src="" alt="GitHub Profile Image">
+    <h2 id="profile-name"></h2>
+</div>
+
+<button onclick="fetchGitHubData()">Load GitHub Profile</button>
+
+<script>
+    function fetchGitHubData() {
+        const requestUrl = 'https://api.github.com/users/Hammad-Aslam';
+        const xhr = new XMLHttpRequest();
+
+        xhr.open('GET', requestUrl);
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState === 4 && xhr.status === 200) {
+                const data = JSON.parse(xhr.responseText);
+                updateProfileCard(data);
+            }
+        };
+        xhr.send();
+    }
+
+    function updateProfileCard(data) {
+        const profileImage = document.getElementById('profile-image');
+        const profileName = document.getElementById('profile-name');
+
+        profileImage.src = data.avatar_url;
+        profileName.textContent = data.name;
+    }
+</script>
+
+</body>
+</html>
